@@ -9,7 +9,7 @@ package 'vim'
 package 'unzip'
 
 locales "Add locales" do
-  locales node["look_and_feel-tlq"]["additional_locales"]
+  locales node["look_and_feel-max"]["additional_locales"]
 end
 
 # Add a banner to ssh login if we're in the production environment
@@ -31,7 +31,7 @@ if node[:environment] == 'staging'
     source 'staging_ssh_banner.erb'
   end
 
-  bash 'Adding visual flags for production environment' do
+  bash 'Adding visual flags for staging environment' do
     user 'root'
     code <<-EOC
       #{seds.map { |rx| "sed -i '#{rx}' #{sshd_config}" }.join("\n")}
